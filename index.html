@@ -1,105 +1,175 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我的网页</title>
-<style>
-  body {
-    text-align: center;
-    padding-bottom: 100px; /* 为底部内容预留空间 */
-  }
-  .button-container {
-    position: relative;
-    z-index: 1;
-    margin-top: 20px; /* 增加按钮容器与顶部的距离 */
-  }
-  .button {
-    opacity: 0.5; /* 设置按钮透明度 */
-    background-color: transparent; /* 设置按钮背景透明 */
-    border: 2px solid #000; /* 设置边框颜色 */
-    padding: 10px 20px; /* 设置按钮内边距 */
-    text-decoration: none; /* 移除链接下划线 */
-    color: #000; /* 设置文字颜色 */
-    display: inline-block; /* 使按钮水平排列 */
-    margin: 0 10px; /* 设置按钮间距 */
-    cursor: pointer; /* 鼠标悬停时显示手型光标 */
-  }
-  #time {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8); /* 设置时间背景半透明 */
-    padding: 10px 0;
-    text-align: center;
-  }
-  .modal {
-    display: none; /* 默认不显示 */
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: white;
-    z-index: 1000;
-  }
-  .overlay {
-    display: none; /* 默认不显示 */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
-    z-index: 999;
-  }
-  h1 {
-    margin-top: 50px; /* 增加标题与顶部的距离 */
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一个网页</title>
+  <style>
+    body {
+      text-align: center;
+      padding-bottom: 100px;
+    }
+    .button-container {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+    }
+    .button {
+      opacity: 0.5;
+      background-color: transparent;
+      border: 2px solid #000;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #000;
+      display: inline-block;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    #time {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px 0;
+      text-align: center;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: white;
+      z-index: 1000;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    
+    /* 新增视频和标题样式 */
+    .video-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .video-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px;
+    }
+    .video-title {
+      margin: 5px 0;
+      width: 100%;
+      text-align: center;
+    }
+    video {
+      margin: 5px 0;
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    h1 {
+      margin-top: 50px;
+    }
+
+    /* 新增可编辑文本区域样式 */
+    .editable-text {
+      display: block;
+      width: 100%;
+      resize: none;
+      outline: none;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
-<h1>欢迎来到我的网页</h1>
-<div class="button-container">
-  <button onclick="showModal()">1号按钮</button>
-  <button onclick="showModal()">2号按钮</button>
-  <button onclick="showModal()">3号按钮</button>
-  <button onclick="showModal()">4号按钮</button>
-</div>
-<div id="time"></div>
-<div id="modal" class="modal">你被骗了！</div>
-<div id="overlay" class="overlay"></div>
+  <h1>欢迎来到我的网页</h1>
+  <div class="button-container">
+    <button onclick="showModal()">1号按钮</button>
+    <button onclick="showModal()">2号按钮</button>
+    <button onclick="showModal()">3号按钮</button>
+    <button onclick="showModal()">4号按钮</button>
+  </div>
 
-<script>
-function showModal() {
-  var modal = document.getElementById('modal');
-  var overlay = document.getElementById('overlay');
-  modal.style.display = 'block';
-  overlay.style.display = 'block';
-}
+  <!-- 新增的视频区域 -->
+  <div class="video-container">
+    <div class="video-item">
+      <div class="video-title">视频标题 1</div>
+      <video src="video1.mp4" controls></video>
+    </div>
+    <div class="video-item">
+      <div class="video-title">视频标题 2</div>
+      <video src="video2.mp4" controls></video>
+    </div>
+    <!-- 其他视频和标题 -->
+    <div class="video-item">
+      <div class="video-title">视频标题 3</div>
+      <video src="video7.mp4" controls></video>
+    </div>
+    <div class="video-item">
+      <div class="video-title">视频标题 4</div>
+      <video src="video8.mp4" controls></video>
+    </div>
+    <div class="video-item">
+      <div class="video-title">视频标题 5</div>
+      <video src="video7.mp4" controls></video>
+    </div>
+    <div class="video-item">
+      <div class="video-title">视频标题 6</div>
+      <video src="video7.mp4" controls></video>
+    </div>
+  
+    <!-- 新增的可编辑文本区域 -->
+    <textarea class="editable-text" rows="4" cols="50" placeholder="如有侵权，请您联系我，我将在24h内删除。邮箱:wwdxzyykf@163.com"></textarea>
+    
+    <div id="time"></div>
+    
+    <div id="modal" class="modal">没有任何东西。</div>
+    <div id="overlay" class="overlay"></div>
+  
+    <script>
+      function showModal() {
+        var modal = document.getElementById('modal');
+        var overlay = document.getElementById('overlay');
+        modal.style.display = 'block';
+        overlay.style.display = 'block';
+      }
 
-function hideModal() {
-  var modal = document.getElementById('modal');
-  var overlay = document.getElementById('overlay');
-  modal.style.display = 'none';
-  overlay.style.display = 'none';
-}
+      function hideModal() {
+        var modal = document.getElementById('modal');
+        var overlay = document.getElementById('overlay');
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+      }
 
-// 页面加载时显示时间
-window.onload = function() {
-  showTime();
-  setInterval(showTime, 1000);
-};
+      // 页面加载时显示时间
+      window.onload = function() {
+        showTime();
+        setInterval(showTime, 1000);
+      };
 
-function showTime() {
-  var date = new Date();
-  var time = date.toLocaleTimeString();
-  document.getElementById("time").innerHTML = time;
-}
+      function showTime() {
+        var date = new Date();
+        var time = date.toLocaleTimeString();
+        document.getElementById("time").innerHTML = time;
+      }
 
-// 点击遮罩层也可以关闭弹窗
-document.querySelector('.overlay').addEventListener('click', hideModal);
-</script>
-</body>
-</html>
+      // 点击遮罩层也可以关闭弹窗
+      document.querySelector('.overlay').addEventListener('click', hideModal);
+  </script>
